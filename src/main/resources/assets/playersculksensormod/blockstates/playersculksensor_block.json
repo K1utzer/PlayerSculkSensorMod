@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "sculk_sensor_phase=active": {
+      "model": "playersculksensormod:block/playersculksensor_block_active"
+    },
+    "sculk_sensor_phase=cooldown": {
+      "model": "playersculksensormod:block/playersculksensor_block_inactive"
+    },
+    "sculk_sensor_phase=inactive": {
+      "model": "playersculksensormod:block/playersculksensor_block_inactive"
+    }
+  }
+}

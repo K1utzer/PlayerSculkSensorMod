@@ -1,0 +1,6 @@
+{
+  "parent": "playersculksensormod:block/playersculksensor_block",
+  "textures": {
+    "tendrils": "playersculksensormod:block/playersculksensor_tendril_inactive"
+  }
+}
