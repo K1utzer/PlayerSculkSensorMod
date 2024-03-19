@@ -1,6 +1,7 @@
 package com.klutzer.playersculksensor.block;
 
 import com.klutzer.playersculksensor.PlayerSculkSensorMod;
+import com.klutzer.playersculksensor.config.PlayerSculkSensorCommonConfig;
 import com.klutzer.playersculksensor.item.AllItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -24,7 +25,7 @@ public class AllBlocks {
                     "playersculksensor_block",
                     () -> new PlayerSculkSensorBlock(
                             BlockBehaviour
-                                    .Properties.copy(Blocks.SCULK_SENSOR),7),
+                                    .Properties.copy(Blocks.SCULK_SENSOR), PlayerSculkSensorCommonConfig.PLAYER_SCULK_SENSOR_RANGE.get()),
                     CreativeModeTab.TAB_REDSTONE);
 
 

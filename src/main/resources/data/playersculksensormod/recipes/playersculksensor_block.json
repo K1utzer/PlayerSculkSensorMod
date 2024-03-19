@@ -1,24 +1,13 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "KKK",
-    "DOD",
-    "###"
-  ],
-  "key": {
-    "K": {
-      "item": "minecraft:kelp"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:sculk_sensor"
     },
-    "D": {
-      "item": "minecraft:diamond"
-    },
-    "O": {
-      "item": "minecraft:observer"
-    },
-    "#": {
-      "item": "minecraft:obsidian"
+    {
+      "item": "minecraft:iron_boots"
     }
-  },
+  ],
   "result": {
     "item": "playersculksensormod:playersculksensor_block"
   }

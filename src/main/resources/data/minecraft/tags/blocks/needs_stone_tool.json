@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "playersculksensormod:playersculksensor_block"
+    "playersculksensormod:playersculksensor_block",
+    "minecraft:sculk_sensor"
   ]
 }

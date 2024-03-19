@@ -44,7 +44,7 @@ public class PlayerSculkSensorBlockEntity extends BlockEntity implements Vibrati
     }
 
     public boolean shouldListen(Level level, GameEventListener listener, BlockPos pos, GameEvent event, @Nullable Entity entity) {
-        return event == GameEvent.STEP && entity instanceof Player && PlayerSculkSensorBlock.canActivate(this.getBlockState());
+        return entity instanceof Player && PlayerSculkSensorBlock.canActivate(this.getBlockState());
     }
     public static void tick(Level level, BlockPos pos, BlockState state, PlayerSculkSensorBlockEntity be) {
         be.listener.tick(level);
