@@ -35,8 +35,41 @@ public class PlayerSculkSensorCommonConfig {
                 .defineInRange("Range", 7, 1, 15);
 
         PLAYER_EVENTS = BUILDER
-                .comment("List of player events to detect.")
+                .comment("List of player events to detect.",
+                        "This list defines which player-related events the Player Sculk Sensor will react to.",
+                        "Events include:",
+                        "  STEP: Triggered when a player steps on a block.",
+                        "  MINECART_MOVING: Triggered when a player moves a minecart.",
+                        "  BLOCK_PLACE: Triggered when a player places a block.",
+                        "  BLOCK_DESTROY: Triggered when a player destroys a block.",
+                        "  FLUID_PLACE: Triggered when a player places a fluid.",
+                        "  HIT_GROUND: Triggered when a player hits the ground hard (from a fall).",
+                        "  SWIM: Triggered when a player swims in water or lava.",
+                        "  EAT: Triggered when a player eats something.",
+                        "  ELYTRA_FREE_FALL: Triggered when a player free falls with an Elytra.",
+                        "  SPLASH: Triggered when a player splashes in water.",
+                        "  RING_BELL: Triggered when a player rings a bell.",
+                        "  PROJECTILE_SHOOT: Triggered when a player shoots a projectile.",
+                        "  DRINKING_FINISH: Triggered when a player finishes drinking a potion.",
+                        "  PRIME_FUSE: Triggered when a player primes TNT.",
+                        "  PROJECTILE_LAND: Triggered when a player's thrown projectile lands.",
+                        "  MOB_INTERACT: Triggered when a player interacts with a mob.",
+                        "  ENTITY_DAMAGED: Triggered when a player damages an entity.",
+                        "  EQUIP: Triggered when a player equips an item.",
+                        "  SHEAR: Triggered when a player shears a sheep or similar.",
+                        "  BLOCK_CLOSE, BLOCK_UNSWITCH, BLOCK_UNPRESS, BLOCK_DETACH, BLOCK_OPEN,",
+                        "  BLOCK_SWITCH, BLOCK_PRESS, BLOCK_ATTACH: Various block interaction events.",
+                        "  ENTITY_PLACE: Triggered when a player places an entity like a boat or minecart.",
+                        "  ENTITY_KILLED: Triggered when a player kills any entity.",
+                        "  FLUID_PICKUP: Triggered when a player picks up fluid with a bucket.",
+                        "  FISHING_ROD_REEL_IN: Triggered when a player reels in a fishing rod.",
+                        "  CONTAINER_CLOSE, CONTAINER_OPEN: Triggered when a player opens or closes a container.",
+                        "  FISHING_ROD_CAST: Triggered when a player casts a fishing rod.",
+                        "  EXPLODE: Triggered when an explosion occurs near a player.",
+                        "  LIGHTNING_STRIKE: Triggered when lightning strikes near a player.",
+                        "  SHULKER_OPEN: Triggered when a player opens a Shulker Box.")
                 .define("PlayerEvents", DEFAULT_EVENTS);
+
 
 
         BUILDER.pop();
