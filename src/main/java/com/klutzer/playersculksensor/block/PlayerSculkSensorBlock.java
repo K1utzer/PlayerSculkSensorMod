@@ -1,5 +1,6 @@
 package com.klutzer.playersculksensor.block;
 
+import com.klutzer.playersculksensor.config.PlayerSculkSensorCommonConfig;
 import com.klutzer.playersculksensor.entity.AllEntities;
 import com.klutzer.playersculksensor.entity.PlayerSculkSensorBlockEntity;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -34,29 +35,28 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 public class PlayerSculkSensorBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final int ACTIVE_TICKS = 40;
-    public static final int COOLDOWN_TICKS = 1;
-    public static final Object2IntMap<GameEvent> VIBRATION_STRENGTH_FOR_EVENT = Object2IntMaps.unmodifiable((Object2IntMap) Util.make(new Object2IntOpenHashMap(), (p_154469_) -> {
-        p_154469_.put(GameEvent.STEP, 1);
-        p_154469_.put(GameEvent.MINECART_MOVING, 2);
-        p_154469_.put(GameEvent.BLOCK_PLACE, 3);
-        p_154469_.put(GameEvent.BLOCK_DESTROY, 4);
-        p_154469_.put(GameEvent.FLUID_PLACE, 5);
-        p_154469_.put(GameEvent.HIT_GROUND, 6);
-    }));
+    public static Object2IntMap<GameEvent> VIBRATION_STRENGTH_FOR_EVENT ;
+
     public static final EnumProperty<SculkSensorPhase> PHASE;
     public static final IntegerProperty POWER;
     public static final BooleanProperty WATERLOGGED;
     protected static final VoxelShape SHAPE;
-    private final int listenerRange;
+    private int listenerRange;
 
-    public PlayerSculkSensorBlock(BlockBehaviour.Properties pProperties, int pListenerRange) {
+    public PlayerSculkSensorBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState((BlockState)((BlockState)((BlockState)((BlockState)this.stateDefinition.any()).setValue(PHASE, SculkSensorPhase.INACTIVE)).setValue(POWER, 0)).setValue(WATERLOGGED, false));
-        this.listenerRange = pListenerRange;
+        this.registerDefaultState(this.stateDefinition.any().setValue(PHASE, SculkSensorPhase.INACTIVE).setValue(POWER, 0).setValue(WATERLOGGED, false));
+
+    }
+    public void Configure(){
+        this.listenerRange = PlayerSculkSensorCommonConfig.PLAYER_SCULK_SENSOR_RANGE.get();
+        VIBRATION_STRENGTH_FOR_EVENT =
+                Object2IntMaps.unmodifiable(PlayerSculkSensorCommonConfig.convertConfigToGameEvents());
+
     }
 
     public int getListenerRange() {
