@@ -20,12 +20,12 @@ public class AllBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, PlayerSculkSensorMod.MOD_ID);
 
-    public static final RegistryObject<Block> PLAYERSCULKSENSOR_BLOCK =
+    public static final RegistryObject<PlayerSculkSensorBlock> PLAYERSCULKSENSOR_BLOCK =
             registerBlock(
                     "playersculksensor_block",
                     () -> new PlayerSculkSensorBlock(
                             BlockBehaviour
-                                    .Properties.copy(Blocks.SCULK_SENSOR), PlayerSculkSensorCommonConfig.PLAYER_SCULK_SENSOR_RANGE.get()),
+                                    .Properties.copy(Blocks.SCULK_SENSOR)),
                     CreativeModeTab.TAB_REDSTONE);
 
 

@@ -39,21 +39,24 @@ import java.util.List;
 import java.util.Random;
 
 public class PlayerSculkSensorBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final Object2IntMap<GameEvent> VIBRATION_STRENGTH_FOR_EVENT =
-            Object2IntMaps.unmodifiable(PlayerSculkSensorCommonConfig.convertConfigToGameEvents());
-
-
+    public static Object2IntMap<GameEvent> VIBRATION_STRENGTH_FOR_EVENT ;
 
     public static final EnumProperty<SculkSensorPhase> PHASE;
     public static final IntegerProperty POWER;
     public static final BooleanProperty WATERLOGGED;
     protected static final VoxelShape SHAPE;
-    private final int listenerRange;
+    private int listenerRange;
 
-    public PlayerSculkSensorBlock(BlockBehaviour.Properties pProperties, int pListenerRange) {
+    public PlayerSculkSensorBlock(BlockBehaviour.Properties pProperties) {
         super(pProperties);
         this.registerDefaultState(this.stateDefinition.any().setValue(PHASE, SculkSensorPhase.INACTIVE).setValue(POWER, 0).setValue(WATERLOGGED, false));
-        this.listenerRange = pListenerRange;
+
+    }
+    public void Configure(){
+        this.listenerRange = PlayerSculkSensorCommonConfig.PLAYER_SCULK_SENSOR_RANGE.get();
+        VIBRATION_STRENGTH_FOR_EVENT =
+                Object2IntMaps.unmodifiable(PlayerSculkSensorCommonConfig.convertConfigToGameEvents());
+
     }
 
     public int getListenerRange() {

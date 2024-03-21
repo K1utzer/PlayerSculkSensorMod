@@ -1,7 +1,6 @@
 package com.klutzer.playersculksensor.config;
 
 import com.klutzer.playersculksensor.PlayerSculkSensorMod;
-import com.mojang.logging.LogUtils;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -35,11 +34,6 @@ public class PlayerSculkSensorCommonConfig {
                 .comment("Detection Range for the Player-Sculksensor.")
                 .defineInRange("Range", 7, 1, 15);
 
-       /* PLAYER_EVENTS = BUILDER
-                .comment("List of player events to detect.")
-                .defineList("PlayerEvents",
-                        DEFAULT_EVENTS,
-                        input -> input instanceof String);*/
         PLAYER_EVENTS = BUILDER
                 .comment("List of player events to detect.")
                 .define("PlayerEvents", DEFAULT_EVENTS);
@@ -90,9 +84,7 @@ public class PlayerSculkSensorCommonConfig {
         );
 
         Object2IntMap<GameEvent> allowedEvents = new Object2IntOpenHashMap<>();
-        PlayerSculkSensorMod.getLogger().debug(String.valueOf(PLAYER_SCULK_SENSOR_RANGE.get()));
         String[] configEvents = PLAYER_EVENTS.get().split(", ");
-        PlayerSculkSensorMod.getLogger().debug("HIIIER: "+ PLAYER_EVENTS.get());
         for (String eventName : configEvents) {
             GameEvent event = nameToEventMap.get(eventName);
             PlayerSculkSensorMod.getLogger().debug(eventName);
@@ -104,60 +96,6 @@ public class PlayerSculkSensorCommonConfig {
         return allowedEvents;
 
     }
-   /* public static Object2IntMap<GameEvent> convertConfigEventsToGameEvents() {
-        Map<String, GameEvent> nameToEventMap = Map.ofEntries(
-                Map.entry("STEP", GameEvent.STEP),
-                Map.entry("MINECART_MOVING", GameEvent.MINECART_MOVING),
-                Map.entry("BLOCK_PLACE", GameEvent.BLOCK_PLACE),
-                Map.entry("BLOCK_DESTROY", GameEvent.BLOCK_DESTROY),
-                Map.entry("FLUID_PLACE", GameEvent.FLUID_PLACE),
-                Map.entry("HIT_GROUND", GameEvent.HIT_GROUND),
-                Map.entry("SWIM", GameEvent.SWIM),
-                Map.entry("EAT", GameEvent.EAT),
-                Map.entry("ELYTRA_FREE_FALL", GameEvent.ELYTRA_FREE_FALL),
-                Map.entry("SPLASH", GameEvent.SPLASH),
-                Map.entry("RING_BELL", GameEvent.RING_BELL),
-                Map.entry("PROJECTILE_SHOOT", GameEvent.PROJECTILE_SHOOT),
-                Map.entry("DRINKING_FINISH", GameEvent.DRINKING_FINISH),
-                Map.entry("PRIME_FUSE", GameEvent.PRIME_FUSE),
-                Map.entry("PROJECTILE_LAND", GameEvent.PROJECTILE_LAND),
-                Map.entry("MOB_INTERACT", GameEvent.MOB_INTERACT),
-                Map.entry("ENTITY_DAMAGED", GameEvent.ENTITY_DAMAGED),
-                Map.entry("EQUIP", GameEvent.EQUIP),
-                Map.entry("SHEAR", GameEvent.SHEAR),
-                Map.entry("BLOCK_CLOSE", GameEvent.BLOCK_CLOSE),
-                Map.entry("BLOCK_UNSWITCH", GameEvent.BLOCK_UNSWITCH),
-                Map.entry("BLOCK_UNPRESS", GameEvent.BLOCK_UNPRESS),
-                Map.entry("BLOCK_DETACH", GameEvent.BLOCK_DETACH),
-                Map.entry("BLOCK_OPEN", GameEvent.BLOCK_OPEN),
-                Map.entry("BLOCK_SWITCH", GameEvent.BLOCK_SWITCH),
-                Map.entry("BLOCK_PRESS", GameEvent.BLOCK_PRESS),
-                Map.entry("BLOCK_ATTACH", GameEvent.BLOCK_ATTACH),
-                Map.entry("ENTITY_PLACE", GameEvent.ENTITY_PLACE),
-                Map.entry("ENTITY_KILLED", GameEvent.ENTITY_KILLED),
-                Map.entry("FLUID_PICKUP", GameEvent.FLUID_PICKUP),
-                Map.entry("FISHING_ROD_REEL_IN", GameEvent.FISHING_ROD_REEL_IN),
-                Map.entry("CONTAINER_CLOSE", GameEvent.CONTAINER_CLOSE),
-                Map.entry("CONTAINER_OPEN", GameEvent.CONTAINER_OPEN),
-                Map.entry("FISHING_ROD_CAST", GameEvent.FISHING_ROD_CAST),
-                Map.entry("EXPLODE", GameEvent.EXPLODE),
-                Map.entry("LIGHTNING_STRIKE", GameEvent.LIGHTNING_STRIKE),
-                Map.entry("SHULKER_OPEN", GameEvent.SHULKER_OPEN)
-        );
-
-        Object2IntMap<GameEvent> allowedEvents = new Object2IntOpenHashMap<>();
-        PlayerSculkSensorMod.getLogger().debug(String.valueOf(PLAYER_SCULK_SENSOR_RANGE.get()));
-        List<String> configEvents = (List<String>) PLAYER_EVENTS.get();
-        for (String eventName : configEvents) {
-            GameEvent event = nameToEventMap.get(eventName);
-            PlayerSculkSensorMod.getLogger().debug(eventName);
-            if (event != null) {
-                int eventStrength = getPredefinedEventStrength(eventName);
-                allowedEvents.put(event, eventStrength);
-            }
-        }
-        return allowedEvents;
-    }*/
 
     private static int getPredefinedEventStrength(String eventName) {
         return switch (eventName) {

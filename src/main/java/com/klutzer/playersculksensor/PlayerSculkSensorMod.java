@@ -13,6 +13,7 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -38,13 +39,17 @@ public class PlayerSculkSensorMod
         AllEntities.register(eventBus);
 
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
-        LOGGER.debug("HIIIIER"+ PlayerSculkSensorCommonConfig.PLAYER_SCULK_SENSOR_RANGE.get());
+
     }
 
     public void setup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(AllBlocks.PLAYERSCULKSENSOR_BLOCK.get(), RenderType.translucent());
+    }
+    public void commonSetup(FMLCommonSetupEvent event){
+        AllBlocks.PLAYERSCULKSENSOR_BLOCK.get().Configure();
     }
 
 }
